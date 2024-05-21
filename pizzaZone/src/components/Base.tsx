@@ -8,10 +8,23 @@ const Base = ({ addBase, pizza }) => {
     hidden: {x: "100vw"},
     visible: {x: 0, delay: 1}
   }
-const buttonVariant = {
-  hidden: {x: '100vw'},
-  visible: {x: 0, transition: {type: 'spring', stiffness: 120}
-}}
+
+
+const buttonVariants = {
+  /*  visible: {
+    x: [0, -20, 20, -20, 0],
+    transition: {delay: 2}
+  }, */
+  hover: {
+    scale: 1.1,
+    textShadow: "0px 0px 8px rgb(255, 255, 255)",
+    boxShadow: "0px 0px 8px rgb(255, 255, 255)",
+    transition: {
+      repeat: Infinity,
+      repeatType: "reverse",
+    },
+  },
+};
 
   return (
     <>
@@ -31,7 +44,7 @@ const buttonVariant = {
         {pizza.base && (
           <div className="next">
             <Link to="/toppings">
-              <motion.button variants={buttonVariant} whileHover={{scale: 1.1, textShadow: "0px 0px 8px rgb(255, 255, 255)", boxShadow: "0px 0px 8px rgb(255, 255, 255)"}}>Next</motion.button>
+              <motion.button variants={buttonVariants} whileHover="hover">Next</motion.button>
             </Link>
           </div>
         )}
