@@ -28,7 +28,7 @@ const svgVariants = {
 const Header = () => {
   return (
     <header>
-      <div className="logo">
+      <motion.div drag dragConstraints={{top:0, right: 0, bottom: 0, left:0}} dragElastic={0.5} className="logo">
         <motion.svg variants={svgVariants} initial='hidden' animate='visible' className="pizza-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
           <motion.path variants={pathVariants}
             fill="none"
@@ -39,7 +39,7 @@ const Header = () => {
             d="M50 30 L50 -10 C50 -10 90 -10 90 30 Z"
           />
         </motion.svg>
-      </div>
+      </motion.div>
       <div className="title">
         <motion.h1 initial={{y: "-100vh", opacity: 0}} animate={{y: 0, opacity: 1}} transition={{delay: 0.2}}>Pizza Joint</motion.h1>
       </div>
