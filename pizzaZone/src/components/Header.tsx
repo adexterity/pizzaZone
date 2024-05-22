@@ -9,7 +9,7 @@ const svgVariants = {
     opacity: 1,
     rotate: 0,
     transition: {
-      delay: 1.5,  ease: 'easeIn'
+      delay: .5,  ease: 'easeIn'
   }}
 }
 
