@@ -6,7 +6,11 @@ const Base = ({ addBase, pizza }) => {
 
   const variantProperty = {
     hidden: {x: "100vw"},
-    visible: {x: 0, delay: 1}
+    visible: {x: 0, delay: 1},
+    exit: {
+      x: '-100vw',
+      transition: {ease: 'easeInOut'}
+    }
   }
 
 
@@ -28,7 +32,7 @@ const buttonVariants = {
 
   return (
     <>
-      <motion.div variants={variantProperty} initial='hidden' animate='visible' className="base container">
+      <motion.div variants={variantProperty} initial='hidden' animate='visible' exit = 'exit' className="base container">
         <h3>Step 1: Choose Your Base</h3>
         <ul>
           {bases.map((base) => {

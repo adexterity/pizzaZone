@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 
 const buttonVariants = {
-  /*  visible: {
-    x: [0, -20, 20, -20, 0],
-    transition: {delay: 2}
-  }, */
   hover: {
     scale: 1.1,
     textShadow: "0px 0px 8px rgb(255, 255, 255)",
@@ -18,31 +13,42 @@ const buttonVariants = {
   },
 };
 
-const Home = () => {
-  const [item, setItem] = useState(true);
+const containerVariants = {
+  hidden: {
+    opacity: 0 
+  },
+  visible: {
+    opacity: 1,
+    transition : { delay: 1, duration: 1.5 }
+  },
+  exit: {
+    x: '-100vw',
+    transition: {ease: 'easeInOut'}
+  }
+}
 
-  setTimeout(() => {
-    setItem(false);
-  }, 4000);
+
+
+const Home = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1, duration: 1.5 }}
-      className="home container"
-    >
-      <AnimatePresence>
-        {item && <motion.h2 exit={{x: 2000}} >Welcome to Pizza Joint</motion.h2>}
-      </AnimatePresence>
-      <Link to="/base">
-        <motion.button
-          variants={buttonVariants}
-          /* animate = 'visible' */ whileHover="hover"
-        >
-          Create Your Pizza
-        </motion.button>
-      </Link>
-    </motion.div>
+    
+      <motion.div 
+      variants={containerVariants}
+        initial='hidden'
+        animate='visible'
+        exit = 'exit'
+        className="home container"
+      >
+        <motion.h2>Welcome to Pizza Joint</motion.h2>
+        <Link to="/base">
+          <motion.button
+            variants={buttonVariants}
+            /* animate = 'visible' */ whileHover="hover"
+          >
+            Create Your Pizza
+          </motion.button>
+        </Link>
+      </motion.div>
   );
 };
 

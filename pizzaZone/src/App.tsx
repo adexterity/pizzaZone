@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Order from "./components/Order";
 import Base from "./components/Base";
 import Toppings from "./components/Toppings";
+import { AnimatePresence } from "framer-motion";
 
 
 function App() {
@@ -24,16 +25,20 @@ function App() {
     setPizza({ ...pizza, toppings: newToppings });
   };
 
+  const location = useLocation();
+
   return (
     <>
       <Header />
+      <AnimatePresence mode="wait">
 
-      <Routes>
-        <Route path="/" element={<Home  />} />
+      <Routes location={location} key={location.key}> {/* you cant use this uselocation() hook where you define your Router */}
+        <Route path="/" element={<Home  />} exit={{x: 0}}/>
         <Route path="/toppings" element={<Toppings pizza={pizza} addTopping = {addTopping} />} />
         <Route path="/base" element={<Base pizza={pizza} addBase={addBase} />}  />
         <Route path="/order" element={<Order pizza={pizza} />}  />
       </Routes>
+      </AnimatePresence>
     </>
   );
 }
