@@ -104,3 +104,38 @@ li span.active::before{
 .order p{
   margin: 20px auto;
 }
+/* modal */
+.backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0, 0.5);
+  backdrop-filter: blur(2px); 
+  z-index: 100;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 2px 5px rgba(255, 255, 255, 0.075), inset -2px -2px 2px 5px rgba(255, 255, 255, 0.075),inset 2px 2px 70px 1px rgba(255,255,255,0.5) , inset -2px -2px 20px 1px rgba(255,255,255,0.5);
+  
+}
+.modal{
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+}
+.modal button{
+  color: #444;
+  border-color: #444;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.modal p {
+  color: #444;
+  font-weight: bold;
+}
+

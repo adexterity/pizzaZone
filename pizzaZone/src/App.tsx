@@ -6,9 +6,11 @@ import Order from "./components/Order";
 import Base from "./components/Base";
 import Toppings from "./components/Toppings";
 import { AnimatePresence } from "framer-motion";
-
+import Modal from "./components/Modal";
 
 function App() {
+  const [showModal, setShowModal] = useState(false);
+
   const [pizza, setPizza] = useState({ base: "", toppings: [] });
 
   const addBase = (base) => {
@@ -30,14 +32,23 @@ function App() {
   return (
     <>
       <Header />
-      <AnimatePresence mode="wait">
+      {showModal && <Modal showModal={showModal} setShowModal={setShowModal} />}
 
-      <Routes location={location} key={location.key}> {/* you cant use this uselocation() hook where you define your Router */}
-        <Route path="/" element={<Home  />} exit={{x: 0}}/>
-        <Route path="/toppings" element={<Toppings pizza={pizza} addTopping = {addTopping} />} />
-        <Route path="/base" element={<Base pizza={pizza} addBase={addBase} />}  />
-        <Route path="/order" element={<Order pizza={pizza} />}  />
-      </Routes>
+      <AnimatePresence mode="wait" onExitComplete={()=>setShowModal(false)}>
+        <Routes location={location} key={location.key}>
+          
+          {/* you cant use this uselocation() hook where you define your Router */}
+          <Route path="/" element={<Home />} exit={{ x: 0 }} />
+          <Route
+            path="/toppings"
+            element={<Toppings pizza={pizza} addTopping={addTopping} />}
+          />
+          <Route
+            path="/base"
+            element={<Base pizza={pizza} addBase={addBase} />}
+          />
+          <Route path="/order" element={<Order pizza={pizza} setShowModal={setShowModal} />} />
+        </Routes>
       </AnimatePresence>
     </>
   );
